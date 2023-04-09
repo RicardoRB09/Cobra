@@ -2,12 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class MaterialCreation extends StatelessWidget {
+  const MaterialCreation({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {},
+          child: Icon(
+            Ionicons.chevron_back_outline,
+            color: Colors.green.shade800,
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Create Material',
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 16.sp,
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(

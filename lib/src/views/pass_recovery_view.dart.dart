@@ -1,40 +1,64 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class PasswordRecovery extends StatelessWidget {
+  const PasswordRecovery({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {},
+          child: Icon(
+            Ionicons.chevron_back_outline,
+            color: Colors.green.shade800,
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Password Recovery',
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 16.sp,
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(
             margin: EdgeInsets.only(top: 0.08.sh),
             width: double.infinity,
-            child: Image.asset(
-              'assets/images/logo.jpeg',
-              scale: 2.5,
+            height: 0.15.sh,
+            decoration: BoxDecoration(
+                color: Colors.green.shade300.withOpacity(0.3),
+                shape: BoxShape.circle),
+            child: Center(
+              child: Icon(CupertinoIcons.lock_rotation_open,
+                  size: 40.sp, color: Colors.white),
             ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 20.w, bottom: 5.h),
+                  padding:
+                      EdgeInsets.only(left: 20.w, right: 20.w, bottom: 5.h),
                   child: Text(
-                    'Sign In',
+                    'Please Enter your associated email. You will receive indications to create a new password.',
+                    textAlign: TextAlign.justify,
                     style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade800,
+                      fontSize: 16.sp,
+                      color: Colors.black87,
                     ),
                   ),
                 ),
               ),
+              SizedBox(height: 16.h),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.w),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -65,37 +89,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16.h),
-                    TextField(
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Ionicons.key_outline,
-                            color: Colors.green.shade800),
-                        suffixIcon: const Icon(
-                          Ionicons.eye_outline,
-                          color: Colors.black45,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text('Forgot your Password?'),
-                    ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 32.h),
                     InkWell(
                       onTap: () {},
                       child: Container(
@@ -112,7 +106,7 @@ class LoginView extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          'Sign In',
+                          'Send',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18.sp,
@@ -125,28 +119,6 @@ class LoginView extends StatelessWidget {
               ),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text(r"""Don't have an account? """),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green.shade800,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
