@@ -1,12 +1,33 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
+
+import '../widgets/custom_dropdownbutton.dart';
+import '../widgets/custom_text_field.dart';
 
 class MaterialCreation extends StatelessWidget {
   const MaterialCreation({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<String> materialList = [
+      'Material 1',
+      'Material 2',
+      'Material 3',
+      'Material 4',
+    ];
+
+    List<String> unitList = [
+      'Unit 1',
+      'Unit 2',
+      'Unit 3',
+      'Unit 4',
+    ];
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -24,147 +45,139 @@ class MaterialCreation extends StatelessWidget {
             fontSize: 16.sp,
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+                enableFeedback: true, foregroundColor: Colors.grey),
+            child: Text(
+              'Done',
+              style: TextStyle(color: Colors.green.shade800),
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 0.08.sh),
-            width: double.infinity,
-            child: Image.asset(
-              'assets/images/logo.jpeg',
-              scale: 2.5,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.w, bottom: 5.h),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade800,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.w),
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  color: Colors.green.shade200.withOpacity(0.2),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextField(
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email',
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Ionicons.mail_outline,
-                            color: Colors.green.shade800),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    TextField(
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Ionicons.key_outline,
-                            color: Colors.green.shade800),
-                        suffixIcon: const Icon(
-                          Ionicons.eye_outline,
-                          color: Colors.black45,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text('Forgot your Password?'),
-                    ),
-                    SizedBox(height: 16.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.r),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.green.shade800,
-                              Colors.green.shade500
-                            ],
-                          ),
-                        ),
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+          SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(r"""Don't have an account? """),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green.shade800,
-                      ),
-                    ),
+                  _FieldName(
+                    name: 'Name',
+                    padding: EdgeInsets.only(bottom: 8.h),
+                  ),
+                  CustomTextField(
+                    keyboardType: TextInputType.text,
+                    hintText: 'Enter Material name',
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                    maxLines: 1,
+                    borderRadius: 15,
+                  ),
+                  SizedBox(height: 20.h),
+                  const _StatusToggleButton(),
+                  SizedBox(height: 20.h),
+                  _FieldName(
+                    name: 'Description',
+                    padding: EdgeInsets.only(bottom: 8.h),
+                  ),
+                  CustomTextField(
+                    keyboardType: TextInputType.text,
+                    hintText: 'Enter description here',
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                    maxLines: 3,
+                    borderRadius: 15,
+                  ),
+                  SizedBox(height: 20.h),
+                  _FieldName(
+                    name: 'Price',
+                    padding: EdgeInsets.only(bottom: 8.h),
+                  ),
+                  CustomTextField(
+                    keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true, signed: true),
+                    prefixIcon: const Icon(Ionicons.logo_usd),
+                    hintText: 'Enter price here',
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                    maxLines: 1,
+                    borderRadius: 15,
+                  ),
+                  SizedBox(height: 20.h),
+                  const _FieldName(name: 'Material Type'),
+                  CustomDropdownButton(
+                    items: materialList,
+                    hint: 'Select Material type',
+                  ),
+                  SizedBox(height: 20.h),
+                  const _FieldName(name: 'Unit of Measure'),
+                  CustomDropdownButton(
+                    items: unitList,
+                    hint: 'Select Unit of measure',
                   ),
                 ],
               ),
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _StatusToggleButton extends StatelessWidget {
+  const _StatusToggleButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        const _FieldName(
+          name: 'Status',
+          padding: EdgeInsets.only(right: 8),
+        ),
+        FlutterSwitch(
+          value: true,
+          onToggle: (value) {},
+          activeColor: Colors.green.shade900,
+          width: 42.w,
+          height: 26.h,
+          padding: 3,
+        ),
+      ],
+    );
+  }
+}
+
+class _FieldName extends StatelessWidget {
+  const _FieldName({
+    required this.name,
+    this.padding,
+    super.key,
+  });
+
+  final String name;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding ?? const EdgeInsets.all(0),
+      child: Text(
+        name,
+        style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.green.shade900,
+        ),
       ),
     );
   }
