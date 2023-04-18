@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../widgets/custom_dropdownbutton.dart';
-import '../widgets/custom_text_field.dart';
+import '../../widgets/custom_dropdownbutton.dart';
+import '../../widgets/custom_text_field.dart';
 
 class MaterialCreation extends StatelessWidget {
   const MaterialCreation({super.key});

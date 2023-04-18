@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../widgets/custom_button.dart';
+
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
@@ -96,29 +98,8 @@ class LoginView extends StatelessWidget {
                       child: const Text('Forgot your Password?'),
                     ),
                     SizedBox(height: 16.h),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.r),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.green.shade800,
-                              Colors.green.shade500
-                            ],
-                          ),
-                        ),
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                    const CustomButton(
+                      text: 'Sign in',
                     )
                   ],
                 ),

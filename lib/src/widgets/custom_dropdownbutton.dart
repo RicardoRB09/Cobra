@@ -22,6 +22,7 @@ class CustomDropdownButton extends StatelessWidget {
           // value: 'Select',
           hint: Text(hint ?? ''),
           enableFeedback: true,
+          autofocus: true,
           dropdownColor: Colors.grey.shade200,
           isExpanded: true,
           elevation: 6,
