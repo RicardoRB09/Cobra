@@ -1,3 +1,4 @@
+import 'package:cobra/src/widgets/custom_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -8,37 +9,6 @@ class VehicleListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List vehicleList = [
-      {
-        'Name': 'Material 1',
-        'Description': 'Description 1',
-        'Price': '10000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 2',
-        'Description': 'Description 2',
-        'Price': '20000',
-        'Unit': 'Kg',
-        'Status': 'Off',
-      },
-      {
-        'Name': 'Material 3',
-        'Description': 'Description 3',
-        'Price': '30000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 4',
-        'Description': 'Description 4',
-        'Price': '40000',
-        'Unit': 'cm',
-        'Status': 'Off',
-      }
-    ];
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
@@ -100,68 +70,74 @@ class MaterialCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black38,
-              blurRadius: 3,
-              offset: Offset(0, 2),
-            )
-          ],
-          color: Colors.grey.shade200,
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return SizedBox(
+      child: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                left: 24.w, right: 24.w, bottom: 16.h, top: 50.h),
+            child: Container(
+              padding: EdgeInsets.only(
+                  right: 16.w, left: 16.w, top: 56.h, bottom: 16.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.r),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 3,
+                    offset: Offset(0, 2),
+                  )
+                ],
+                color: Colors.grey.shade200,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _FieldName(name: name),
-                      _VehicleType(vehicleType: vehicleType)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _FieldName(name: name),
+                          _VehicleType(vehicleType: vehicleType)
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const Icon(Ionicons.ellipsis_horizontal_outline),
+                      )
                     ],
                   ),
-                ),
-                const Expanded(
-                  flex: 2,
-                  child: SizedBox(),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    description,
-                    textAlign: TextAlign.justify,
+                  SizedBox(
+                    height: 8.h,
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    '...',
-                    textAlign: TextAlign.end,
-                    style:
-                        TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: Text(
+                          description,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          '1000 Ton',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                              fontSize: 20.sp, fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+          CustomCircleAvatar(diameter: 0.25.sw),
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:cobra/src/views/Place/place_list_view.dart';
 import 'package:cobra/src/views/User/login_view.dart';
 import 'package:cobra/src/views/Material/material_creation_view.dart';
 import 'package:cobra/src/views/Material/material_list_view.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const VehicleListView(),
+          home: const PlaceListView(),
           theme: ThemeData(
             appBarTheme: const AppBarTheme(
               color: Colors.white,

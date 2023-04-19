@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../widgets/custom_circle_avatar.dart';
 import '../../widgets/custom_dropdownbutton.dart';
 import '../../widgets/custom_text_field.dart';
 
@@ -66,7 +67,9 @@ class VehicleCreation extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const _VehicleImage(),
+                  const CustomCircleAvatar(
+                    enableImageEdit: true,
+                  ),
                   SizedBox(height: 20.h),
                   _FieldName(
                     name: 'Name',
@@ -133,93 +136,6 @@ class VehicleCreation extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _VehicleImage extends StatelessWidget {
-  const _VehicleImage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          Container(
-            width: 0.4.sw,
-            height: 0.4.sw,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 2,
-                )
-              ],
-            ),
-            child: Image.network(
-              'https://cdn.pixabay.com/photo/2017/09/07/16/39/vehicle-2725880_960_720.png',
-              // fit: BoxFit.fill,
-              width: 50,
-              height: 50,
-              // scale: 0.1,
-            ),
-          ),
-          Positioned(
-            top: 0.3.sw,
-            left: 0.32.sw,
-            child: Container(
-              width: 0.08.sw,
-              height: 0.08.sw,
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                shape: BoxShape.circle,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.white,
-                    spreadRadius: 2,
-                  )
-                ],
-              ),
-              child: Icon(
-                Ionicons.camera,
-                size: 20.sp,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _StatusToggleButton extends StatelessWidget {
-  const _StatusToggleButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const _FieldName(
-          name: 'Status',
-          padding: EdgeInsets.only(right: 8),
-        ),
-        FlutterSwitch(
-          value: true,
-          onToggle: (value) {},
-          activeColor: Colors.green.shade900,
-          width: 42.w,
-          height: 26.h,
-          padding: 3,
-        ),
-      ],
     );
   }
 }
