@@ -1,59 +1,13 @@
-import 'dart:developer';
-import 'dart:ui';
-
-import 'package:cobra/src/widgets/custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../../widgets/custom_dropdownbutton.dart';
-import '../../widgets/custom_text_field.dart';
-
-class MaterialListView extends StatelessWidget {
-  const MaterialListView({super.key});
+class LocationListView extends StatelessWidget {
+  const LocationListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List materialList = [
-      {
-        'Name': 'Material 1',
-        'Description': 'Description 1',
-        'Price': '10000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 2',
-        'Description': 'Description 2',
-        'Price': '20000',
-        'Unit': 'Kg',
-        'Status': 'Off',
-      },
-      {
-        'Name': 'Material 3',
-        'Description': 'Description 3',
-        'Price': '30000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 4',
-        'Description': 'Description 4',
-        'Price': '40000',
-        'Unit': 'cm',
-        'Status': 'Off',
-      }
-    ];
-
-    List<String> unitList = [
-      'Unit 1',
-      'Unit 2',
-      'Unit 3',
-      'Unit 4',
-    ];
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
@@ -68,7 +22,7 @@ class MaterialListView extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'Material List',
+          'Place List',
           style: TextStyle(
             color: Colors.black87,
             fontSize: 16.sp,
@@ -78,8 +32,8 @@ class MaterialListView extends StatelessWidget {
       body: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: 20,
-        itemBuilder: (context, index) => MaterialCard(
-          name: 'Name ${index + 1}',
+        itemBuilder: (context, index) => _PlaceCard(
+          name: 'Place ${index + 1}',
           description:
               'This is the detailed description field corresponding to the Material # ${index + 1}',
           price: 20001 + index,
@@ -99,8 +53,8 @@ class MaterialListView extends StatelessWidget {
   }
 }
 
-class MaterialCard extends StatelessWidget {
-  const MaterialCard({
+class _PlaceCard extends StatelessWidget {
+  const _PlaceCard({
     required this.name,
     required this.description,
     required this.price,
@@ -133,7 +87,10 @@ class MaterialCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _FieldName(name: name),
-                const _StatusToggleButton(),
+                InkWell(
+                  onTap: () {},
+                  child: const Icon(Ionicons.ellipsis_horizontal_outline),
+                )
               ],
             ),
             SizedBox(
@@ -147,15 +104,6 @@ class MaterialCard extends StatelessWidget {
                   child: Text(
                     description,
                     textAlign: TextAlign.justify,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    '\$ ${price.toString()}',
-                    textAlign: TextAlign.end,
-                    style:
-                        TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
                   ),
                 ),
               ],

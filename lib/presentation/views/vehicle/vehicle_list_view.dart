@@ -1,8 +1,9 @@
-import 'package:cobra/src/widgets/custom_circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
+
+import '../../widgets/widgets.dart';
 
 class VehicleListView extends StatelessWidget {
   const VehicleListView({super.key});
@@ -14,13 +15,6 @@ class VehicleListView extends StatelessWidget {
       appBar: AppBar(
         shadowColor: Colors.black38,
         elevation: 3,
-        leading: InkWell(
-          onTap: () {},
-          child: Icon(
-            Ionicons.chevron_back_outline,
-            color: Colors.green.shade800,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           'Vehicle List',
@@ -33,7 +27,7 @@ class VehicleListView extends StatelessWidget {
       body: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: 20,
-        itemBuilder: (context, index) => MaterialCard(
+        itemBuilder: (context, index) => _MaterialCard(
           name: 'Vehicle Name ${index + 1}',
           vehicleType: 'Vehicle type ${index + 1}',
           description:
@@ -55,8 +49,8 @@ class VehicleListView extends StatelessWidget {
   }
 }
 
-class MaterialCard extends StatelessWidget {
-  const MaterialCard({
+class _MaterialCard extends StatelessWidget {
+  const _MaterialCard({
     required this.name,
     required this.vehicleType,
     required this.description,

@@ -1,12 +1,8 @@
-import 'package:cobra/src/views/Place/place_list_view.dart';
-import 'package:cobra/src/views/User/login_view.dart';
-import 'package:cobra/src/views/Material/material_creation_view.dart';
-import 'package:cobra/src/views/Material/material_list_view.dart';
-import 'package:cobra/src/views/User/pass_recovery_view.dart.dart';
-import 'package:cobra/src/views/Vehicle/vehicle_creation_view.dart';
-import 'package:cobra/src/views/Vehicle/vehicle_list_view.dart';
+import 'package:cobra/config/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:cobra/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,10 +19,12 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          home: const PlaceListView(),
+          routerConfig: appRouter,
           theme: ThemeData(
+            useMaterial3: true,
+            colorSchemeSeed: Colors.green.shade800,
             appBarTheme: const AppBarTheme(
               color: Colors.white,
               shadowColor: Colors.black26,
