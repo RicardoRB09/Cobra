@@ -6,39 +6,46 @@ import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
-  const CustomBottomNavigation({super.key});
+  final int currentIndex;
+  const CustomBottomNavigation({
+    super.key,
+    required this.currentIndex,
+  });
 
-  int getCurrentIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).location;
+  // int getCurrentIndex(BuildContext context) {
+  //   final String location = GoRouterState.of(context).location;
 
-    switch (location) {
-      case '/':
-        return 0;
-      case '/locations':
-        return 1;
-      case '/materials':
-        return 2;
-      case '/transactions':
-        return 3;
+  //   switch (location) {
+  //     case '/':
+  //       return 0;
+  //     case '/locations':
+  //       return 1;
+  //     case '/materials':
+  //       return 2;
+  //     case '/transactions':
+  //       return 3;
 
-      default:
-        return 0;
-    }
-  }
+  //     default:
+  //       return 0;
+  //   }
+  // }
 
   void onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go('/');
+        context.go('/home/0');
         break;
       case 1:
-        context.go('/locations');
+        context.go('/home/1');
         break;
       case 2:
-        context.go('/materials');
+        context.go('/home/2');
         break;
       case 3:
-        context.go('/transactions', extra: AlertDialog());
+        context.go(
+          '/home/3',
+          extra: const AlertDialog(),
+        );
         break;
       default:
     }
@@ -50,7 +57,8 @@ class CustomBottomNavigation extends StatelessWidget {
       enableFeedback: true,
       type: BottomNavigationBarType.fixed,
       iconSize: 24.sp,
-      currentIndex: getCurrentIndex(context),
+      // currentIndex: getCurrentIndex(context),
+      currentIndex: currentIndex,
       onTap: (index) {
         onItemTapped(context, index);
       },

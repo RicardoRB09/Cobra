@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../widgets/widgets.dart';
@@ -36,6 +37,7 @@ class VehicleListView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         enableFeedback: true,
         backgroundColor: Colors.green.shade800,
         child: Icon(
@@ -43,7 +45,9 @@ class VehicleListView extends StatelessWidget {
           color: Colors.white,
           size: 30.sp,
         ),
-        onPressed: () {},
+        onPressed: () {
+          context.push('/vehicle-creation');
+        },
       ),
     );
   }

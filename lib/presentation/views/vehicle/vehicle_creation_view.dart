@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../../widgets/custom_circle_avatar.dart';
-import '../../widgets/custom_dropdownbutton.dart';
-import '../../widgets/custom_text_field.dart';
+import '../../widgets/widgets.dart';
 
 class VehicleCreation extends StatelessWidget {
+  static const name = 'vehicle-creation';
+
   const VehicleCreation({super.key});
 
   @override
@@ -28,7 +29,9 @@ class VehicleCreation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.pop();
+          },
           child: Icon(
             Ionicons.chevron_back_outline,
             color: Colors.green.shade800,
@@ -71,7 +74,7 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: TextInputType.text,
                     hintText: 'Enter Vehicle name',
                     contentPadding:
@@ -84,7 +87,7 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Capacity',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: const TextInputType.numberWithOptions(
                         decimal: true, signed: true),
                     hintText: 'Enter Vehicle capacity',
@@ -98,7 +101,7 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Driver Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: TextInputType.text,
                     hintText: 'Enter Driver name',
                     contentPadding:
@@ -117,7 +120,7 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Description',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: TextInputType.text,
                     hintText: 'Enter description here',
                     contentPadding:

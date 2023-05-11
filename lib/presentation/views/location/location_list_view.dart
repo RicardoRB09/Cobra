@@ -13,13 +13,6 @@ class LocationListView extends StatelessWidget {
       appBar: AppBar(
         shadowColor: Colors.black38,
         elevation: 3,
-        leading: InkWell(
-          onTap: () {},
-          child: Icon(
-            Ionicons.chevron_back_outline,
-            color: Colors.green.shade800,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           'Place List',
@@ -33,13 +26,14 @@ class LocationListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: 20,
         itemBuilder: (context, index) => _PlaceCard(
-          name: 'Place ${index + 1}',
-          description:
-              'This is the detailed description field corresponding to the Material # ${index + 1}',
+          name: 'Location name ${index + 1}',
+          address: 'Circunvalar street #${index + 1} - ${index + 2}',
+          cityState: 'Atlántico - Barranquilla',
           price: 20001 + index,
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         enableFeedback: true,
         backgroundColor: Colors.green.shade800,
         child: Icon(
@@ -56,12 +50,14 @@ class LocationListView extends StatelessWidget {
 class _PlaceCard extends StatelessWidget {
   const _PlaceCard({
     required this.name,
-    required this.description,
+    required this.address,
+    required this.cityState,
     required this.price,
     super.key,
   });
   final String name;
-  final String description;
+  final String address;
+  final String cityState;
   final int price;
 
   @override
@@ -69,7 +65,7 @@ class _PlaceCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(vertical: 16.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: const [
@@ -81,63 +77,38 @@ class _PlaceCard extends StatelessWidget {
           ],
           color: Colors.grey.shade200,
         ),
-        child: Column(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _FieldName(name: name),
-                InkWell(
-                  onTap: () {},
-                  child: const Icon(Ionicons.ellipsis_horizontal_outline),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    description,
+            const Expanded(child: Icon(Ionicons.location_outline)),
+            Expanded(
+              flex: 5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _FieldName(name: name),
+                  SizedBox(height: 8.h),
+                  Text(
+                    address,
                     textAlign: TextAlign.justify,
                   ),
-                ),
-              ],
+                  Text(
+                    cityState,
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: const Icon(Ionicons.ellipsis_vertical_outline),
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _StatusToggleButton extends StatelessWidget {
-  const _StatusToggleButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const _FieldName(
-          name: 'Status',
-          padding: EdgeInsets.only(right: 8),
-        ),
-        FlutterSwitch(
-          value: true,
-          onToggle: (value) {},
-          activeColor: Colors.green.shade900,
-          width: 42.w,
-          height: 26.h,
-          padding: 3,
-        ),
-      ],
     );
   }
 }
@@ -156,13 +127,17 @@ class _FieldName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: padding ?? const EdgeInsets.all(0),
-      child: Text(
-        name,
-        style: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w500,
-          color: Colors.green.shade900,
-        ),
+      child: Row(
+        children: [
+          Text(
+            name,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.green.shade900,
+            ),
+          ),
+        ],
       ),
     );
   }

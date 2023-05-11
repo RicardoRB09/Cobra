@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
 class MaterialListView extends StatelessWidget {
@@ -52,13 +53,6 @@ class MaterialListView extends StatelessWidget {
       appBar: AppBar(
         shadowColor: Colors.black38,
         elevation: 3,
-        leading: InkWell(
-          onTap: () {},
-          child: Icon(
-            Ionicons.chevron_back_outline,
-            color: Colors.green.shade800,
-          ),
-        ),
         centerTitle: true,
         title: Text(
           'Material List',
@@ -79,6 +73,7 @@ class MaterialListView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         enableFeedback: true,
         backgroundColor: Colors.green.shade800,
         child: Icon(
@@ -86,7 +81,9 @@ class MaterialListView extends StatelessWidget {
           color: Colors.white,
           size: 30.sp,
         ),
-        onPressed: () {},
+        onPressed: () {
+          context.push('/material-creation');
+        },
       ),
     );
   }
@@ -111,10 +108,10 @@ class _MaterialCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: Colors.black38,
-              blurRadius: 3,
+              blurRadius: 3.r,
               offset: Offset(0, 2),
             )
           ],

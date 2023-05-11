@@ -4,41 +4,65 @@ import 'package:cobra/presentation/views/views.dart';
 import '../../presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/home/0',
   routes: [
-    ShellRoute(
-      builder: (context, state, child) {
+    GoRoute(
+      path: '/home/:page',
+      name: HomeScreen.name,
+      builder: (context, state) {
+        final pageIndex = state.params['page'] ?? '0';
         return HomeScreen(
-          childView: child,
+          pageIndex: int.parse(pageIndex),
         );
       },
-      routes: [
-        GoRoute(
-          path: '/',
-          builder: (context, state) {
-            return const VehicleListView();
-          },
-        ),
-        GoRoute(
-          path: '/locations',
-          builder: (context, state) {
-            return const LocationListView();
-          },
-        ),
-        GoRoute(
-          path: '/materials',
-          builder: (context, state) {
-            return const MaterialListView();
-          },
-        ),
-      ],
     ),
-    // GoRoute(
-    //   path: '/',
-    //   name: HomeScreen.name,
-    //   builder: (context, state) => const HomeScreen(
-    //     childView: MaterialListView(),
-    //   ),
+    GoRoute(
+      path: '/vehicle-creation',
+      name: VehicleCreation.name,
+      builder: (_, __) => const VehicleCreation(),
+    ),
+    GoRoute(
+      path: '/material-creation',
+      name: MaterialCreation.name,
+      builder: (_, __) => const MaterialCreation(),
+    ),
+    GoRoute(
+      path: '/register-screen',
+      name: RegisterScreen.name,
+      builder: (_, __) => const RegisterScreen(),
+    ),
+    GoRoute(
+      path: 'login-screen',
+      name: LoginScreen.name,
+      builder: (context, state) => const LoginScreen(),
+    )
+
+    // ShellRoute(
+    //   builder: (context, state, child) {
+    //     return HomeScreen(
+    //       childView: child,
+    //     );
+    //   },
+    //   routes: [
+    //     GoRoute(
+    //       path: '/',
+    //       builder: (context, state) {
+    //         return const VehicleListView();
+    //       },
+    //     ),
+    //     GoRoute(
+    //       path: '/locations',
+    //       builder: (context, state) {
+    //         return const LocationListView();
+    //       },
+    //     ),
+    //     GoRoute(
+    //       path: '/materials',
+    //       builder: (context, state) {
+    //         return const MaterialListView();
+    //       },
+    //     ),
+    //   ],
     // ),
   ],
 );

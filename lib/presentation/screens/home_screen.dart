@@ -1,3 +1,4 @@
+import 'package:cobra/presentation/screens/user/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../views/views.dart';
@@ -5,20 +6,30 @@ import '../widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
-  final Widget childView;
-  // final int pageIndex;
+  final int pageIndex;
+
+  final viewRoutes = const [
+    VehicleListView(),
+    LocationListView(),
+    MaterialListView(),
+    LoginScreen(),
+  ];
 
   const HomeScreen({
     super.key,
-    required this.childView,
+    required this.pageIndex,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: MaterialListView(),
-      body: childView,
-      bottomNavigationBar: const CustomBottomNavigation(),
+      body: IndexedStack(
+        index: pageIndex,
+        children: viewRoutes,
+      ),
+      bottomNavigationBar: CustomBottomNavigation(
+        currentIndex: pageIndex,
+      ),
     );
   }
 }

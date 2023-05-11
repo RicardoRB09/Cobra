@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../../widgets/custom_dropdownbutton.dart';
-import '../../widgets/custom_text_field.dart';
+import '../../widgets/widgets.dart';
 
 class MaterialCreation extends StatelessWidget {
+  static const name = 'material-creation';
+
   const MaterialCreation({super.key});
 
   @override
@@ -28,7 +30,9 @@ class MaterialCreation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.pop();
+          },
           child: Icon(
             Ionicons.chevron_back_outline,
             color: Colors.green.shade800,
@@ -67,7 +71,7 @@ class MaterialCreation extends StatelessWidget {
                     name: 'Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: TextInputType.text,
                     hintText: 'Enter Material name',
                     contentPadding:
@@ -82,7 +86,7 @@ class MaterialCreation extends StatelessWidget {
                     name: 'Description',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: TextInputType.text,
                     hintText: 'Enter description here',
                     contentPadding:
@@ -95,7 +99,7 @@ class MaterialCreation extends StatelessWidget {
                     name: 'Price',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextField(
+                  CustomTextFormField(
                     keyboardType: const TextInputType.numberWithOptions(
                         decimal: true, signed: true),
                     prefixIcon: const Icon(Ionicons.logo_usd),
