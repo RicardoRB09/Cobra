@@ -1,8 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ionicons/ionicons.dart';
+// Flutter imports:
 
-import '../../widgets/custom_button.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:cobra/helpers/show_alerts.dart';
+import 'package:cobra/presentation/providers/login_provider.dart';
+import 'package:cobra/services/auth_service.dart';
+import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   static const name = 'login-screen';
@@ -13,103 +23,138 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 0.02.sh),
-                width: double.infinity,
-                child: Image.asset(
-                  'assets/images/logo-no-background.png',
-                  scale: 2.5,
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.w, bottom: 5.h),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade800,
-                    ),
+        body: Center(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const CobraLogo(),
+                _SignInTitle(),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                  padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    color: Colors.green.shade200.withOpacity(0.2),
                   ),
+                  child: _LoginForm(),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.w),
-                // padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  color: Colors.green.shade200.withOpacity(0.2),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextFormField(
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email',
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Ionicons.mail_outline,
-                            color: Colors.green.shade800),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                      ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LoginForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final loginPvdr = Provider.of<LoginProvider>(context);
+    final authService = Provider.of<AuthService>(context);
+    GlobalKey<FormState> loginGlobalKey = GlobalKey<FormState>();
+
+    return Form(
+      key: loginGlobalKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          CustomTextFormField(
+            keyboardType: TextInputType.emailAddress,
+            textEditingController: loginPvdr.emailCtrl,
+            hintText: 'Enter your email',
+            prefixIcon:
+                Icon(Ionicons.mail_outline, color: Colors.green.shade800),
+            maxLines: 1,
+            enabled: !authService.isAuthenticating,
+            onChanged: (value) => loginPvdr.email = value,
+            validator: (value) => loginPvdr.emailValidator(value!),
+          ),
+          SizedBox(height: 16.h),
+          CustomTextFormField(
+            keyboardType: TextInputType.text,
+            textEditingController: loginPvdr.pswdCtrl,
+            obscureText: !loginPvdr.obscureText,
+            maxLines: 1,
+            enabled: !authService.isAuthenticating,
+            hintText: 'Enter your password',
+            prefixIcon:
+                Icon(Ionicons.key_outline, color: Colors.green.shade800),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                loginPvdr.obscureText = !loginPvdr.obscureText;
+              },
+              child: loginPvdr.obscureText
+                  ? const Icon(
+                      Ionicons.eye_off_outline,
+                      color: Colors.black,
+                    )
+                  : const Icon(
+                      Ionicons.eye_outline,
+                      color: Colors.black,
                     ),
-                    SizedBox(height: 16.h),
-                    TextFormField(
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Ionicons.key_outline,
-                            color: Colors.green.shade800),
-                        suffixIcon: const Icon(
-                          Ionicons.eye_outline,
-                          color: Colors.black45,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text('Forgot your Password?'),
-                    ),
-                    SizedBox(height: 16.h),
-                    const CustomButton(
-                      text: 'Sign in',
-                    ),
-                    SizedBox(height: 16.h),
-                    const _RegisterOption()
-                  ],
-                ),
-              ),
-            ],
+            ),
+            onChanged: (value) => loginPvdr.password = value,
+            validator: (value) => loginPvdr.passWordValidator(value!),
+          ),
+          SizedBox(height: 16.h),
+          InkWell(
+            onTap: () {},
+            child: const Text('Forgot your Password?'),
+          ),
+          SizedBox(height: 16.h),
+          CustomButton(
+            text: 'Login',
+            isLoading: authService.isAuthenticating,
+            onTap: authService.isAuthenticating
+                ? null
+                : () async {
+                    if (!loginGlobalKey.currentState!.validate()) return;
+
+                    final loginOk = await authService.login(
+                      loginPvdr.emailCtrl.text.trim(),
+                      loginPvdr.pswdCtrl.text.trim(),
+                    );
+
+                    if (context.mounted) {}
+                    // FocusScope.of(context).unfocus();
+
+                    if (loginOk) {
+                      context.pushReplacement('/home/0');
+                    } else {
+                      showAlert(
+                        context,
+                        'Login Failed',
+                        'Check your credentials and try again.',
+                        'Ok',
+                        () => context.pop(),
+                      );
+                    }
+                  },
+          ),
+          SizedBox(height: 16.h),
+          _RegisterOption()
+        ],
+      ),
+    );
+  }
+}
+
+class _SignInTitle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: EdgeInsets.only(left: 20.w, bottom: 5.h),
+        child: Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 25.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.green.shade800,
           ),
         ),
       ),
@@ -118,10 +163,6 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _RegisterOption extends StatelessWidget {
-  const _RegisterOption({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -133,7 +174,9 @@ class _RegisterOption extends StatelessWidget {
           children: [
             const Text(r"""Don't have an account? """),
             InkWell(
-              onTap: () {},
+              enableFeedback: true,
+              borderRadius: BorderRadius.circular(8),
+              onTap: () => context.push('/register-screen'),
               child: Text(
                 'Register',
                 style: TextStyle(

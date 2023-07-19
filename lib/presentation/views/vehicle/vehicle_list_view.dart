@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
+// Project imports:
 import '../../widgets/widgets.dart';
 
 class VehicleListView extends StatelessWidget {
@@ -40,13 +43,9 @@ class VehicleListView extends StatelessWidget {
         heroTag: null,
         enableFeedback: true,
         backgroundColor: Colors.green.shade800,
-        child: Icon(
-          Icons.add_rounded,
-          color: Colors.white,
-          size: 30.sp,
-        ),
+        child: Icon(Icons.add_rounded, color: Colors.white, size: 30.sp),
         onPressed: () {
-          context.push('/vehicle-creation');
+          context.pushReplacement('/vehicle-creation');
         },
       ),
     );
@@ -59,7 +58,6 @@ class _MaterialCard extends StatelessWidget {
     required this.vehicleType,
     required this.description,
     required this.price,
-    super.key,
   });
   final String name;
   final String vehicleType;
@@ -134,7 +132,10 @@ class _MaterialCard extends StatelessWidget {
               ),
             ),
           ),
-          CustomCircleAvatar(diameter: 0.25.sw),
+          CustomCircleAvatar(
+            diameter: 0.25.sw,
+            imageUrl: 'assets/images/default_truck.png',
+          ),
         ],
       ),
     );
@@ -143,7 +144,6 @@ class _MaterialCard extends StatelessWidget {
 
 class _VehicleType extends StatelessWidget {
   const _VehicleType({
-    super.key,
     required this.vehicleType,
   });
 
@@ -158,54 +158,21 @@ class _VehicleType extends StatelessWidget {
   }
 }
 
-class _StatusToggleButton extends StatelessWidget {
-  const _StatusToggleButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const _FieldName(
-          name: 'Status',
-          padding: EdgeInsets.only(right: 8),
-        ),
-        FlutterSwitch(
-          value: true,
-          onToggle: (value) {},
-          activeColor: Colors.green.shade900,
-          width: 42.w,
-          height: 26.h,
-          padding: 3,
-        ),
-      ],
-    );
-  }
-}
-
 class _FieldName extends StatelessWidget {
   const _FieldName({
     required this.name,
-    this.padding,
-    super.key,
   });
 
   final String name;
-  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding ?? const EdgeInsets.all(0),
-      child: Text(
-        name,
-        style: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w500,
-          color: Colors.green.shade900,
-        ),
+    return Text(
+      name,
+      style: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        color: Colors.green.shade900,
       ),
     );
   }

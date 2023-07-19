@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:ionicons/ionicons.dart';
 
 class LocationListView extends StatelessWidget {
@@ -53,7 +55,6 @@ class _PlaceCard extends StatelessWidget {
     required this.address,
     required this.cityState,
     required this.price,
-    super.key,
   });
   final String name;
   final String address;
@@ -116,17 +117,14 @@ class _PlaceCard extends StatelessWidget {
 class _FieldName extends StatelessWidget {
   const _FieldName({
     required this.name,
-    this.padding,
-    super.key,
   });
 
   final String name;
-  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? const EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       child: Row(
         children: [
           Text(

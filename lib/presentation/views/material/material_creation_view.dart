@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
+// Project imports:
 import '../../widgets/widgets.dart';
 
 class MaterialCreation extends StatelessWidget {
@@ -71,44 +74,47 @@ class MaterialCreation extends StatelessWidget {
                     name: 'Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextFormField(
-                    keyboardType: TextInputType.text,
-                    hintText: 'Enter Material name',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 1,
-                    borderRadius: 15,
-                  ),
-                  SizedBox(height: 20.h),
-                  const _StatusToggleButton(),
-                  SizedBox(height: 20.h),
-                  _FieldName(
-                    name: 'Description',
-                    padding: EdgeInsets.only(bottom: 8.h),
-                  ),
-                  CustomTextFormField(
-                    keyboardType: TextInputType.text,
-                    hintText: 'Enter description here',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 3,
-                    borderRadius: 15,
-                  ),
-                  SizedBox(height: 20.h),
-                  _FieldName(
-                    name: 'Price',
-                    padding: EdgeInsets.only(bottom: 8.h),
-                  ),
-                  CustomTextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true, signed: true),
-                    prefixIcon: const Icon(Ionicons.logo_usd),
-                    hintText: 'Enter price here',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 1,
-                    borderRadius: 15,
-                  ),
+                  // CustomTextFormField(
+                  //   textEditingController: ,
+                  //   keyboardType: TextInputType.text,
+                  //   hintText: 'Enter Material name',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 1,
+                  //   borderRadius: 15,
+                  // ),
+                  // SizedBox(height: 20.h),
+                  // const _StatusToggleButton(),
+                  // SizedBox(height: 20.h),
+                  // _FieldName(
+                  //   name: 'Description',
+                  //   padding: EdgeInsets.only(bottom: 8.h),
+                  // ),
+                  // CustomTextFormField(
+                  //   textEditingController: ,
+                  //   keyboardType: TextInputType.text,
+                  //   hintText: 'Enter description here',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 3,
+                  //   borderRadius: 15,
+                  // ),
+                  // SizedBox(height: 20.h),
+                  // _FieldName(
+                  //   name: 'Price',
+                  //   padding: EdgeInsets.only(bottom: 8.h),
+                  // ),
+                  // CustomTextFormField(
+                  //   textEditingController: ,
+                  //   keyboardType: const TextInputType.numberWithOptions(
+                  //       decimal: true, signed: true),
+                  //   prefixIcon: const Icon(Ionicons.logo_usd),
+                  //   hintText: 'Enter price here',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 1,
+                  //   borderRadius: 15,
+                  // ),
                   SizedBox(height: 20.h),
                   const _FieldName(name: 'Material Type'),
                   CustomDropdownButton(
@@ -131,38 +137,10 @@ class MaterialCreation extends StatelessWidget {
   }
 }
 
-class _StatusToggleButton extends StatelessWidget {
-  const _StatusToggleButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const _FieldName(
-          name: 'Status',
-          padding: EdgeInsets.only(right: 8),
-        ),
-        FlutterSwitch(
-          value: true,
-          onToggle: (value) {},
-          activeColor: Colors.green.shade900,
-          width: 42.w,
-          height: 26.h,
-          padding: 3,
-        ),
-      ],
-    );
-  }
-}
-
 class _FieldName extends StatelessWidget {
   const _FieldName({
     required this.name,
     this.padding,
-    super.key,
   });
 
   final String name;

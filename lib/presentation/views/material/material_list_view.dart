@@ -1,53 +1,16 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Package imports:
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ionicons/ionicons.dart';
 
 class MaterialListView extends StatelessWidget {
   const MaterialListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List materialList = [
-      {
-        'Name': 'Material 1',
-        'Description': 'Description 1',
-        'Price': '10000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 2',
-        'Description': 'Description 2',
-        'Price': '20000',
-        'Unit': 'Kg',
-        'Status': 'Off',
-      },
-      {
-        'Name': 'Material 3',
-        'Description': 'Description 3',
-        'Price': '30000',
-        'Unit': 'Kg',
-        'Status': 'On',
-      },
-      {
-        'Name': 'Material 4',
-        'Description': 'Description 4',
-        'Price': '40000',
-        'Unit': 'cm',
-        'Status': 'Off',
-      }
-    ];
-
-    List<String> unitList = [
-      'Unit 1',
-      'Unit 2',
-      'Unit 3',
-      'Unit 4',
-    ];
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: AppBar(
@@ -94,7 +57,6 @@ class _MaterialCard extends StatelessWidget {
     required this.name,
     required this.description,
     required this.price,
-    super.key,
   });
   final String name;
   final String description;
@@ -112,7 +74,7 @@ class _MaterialCard extends StatelessWidget {
             BoxShadow(
               color: Colors.black38,
               blurRadius: 3.r,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             )
           ],
           color: Colors.grey.shade200,
@@ -123,7 +85,7 @@ class _MaterialCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _FieldName(name: name),
-                const _StatusToggleButton(),
+                _StatusToggleButton(),
               ],
             ),
             SizedBox(
@@ -158,10 +120,6 @@ class _MaterialCard extends StatelessWidget {
 }
 
 class _StatusToggleButton extends StatelessWidget {
-  const _StatusToggleButton({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -188,7 +146,6 @@ class _FieldName extends StatelessWidget {
   const _FieldName({
     required this.name,
     this.padding,
-    super.key,
   });
 
   final String name;

@@ -1,8 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
 
+// Project imports:
 import '../../widgets/widgets.dart';
 
 class VehicleCreation extends StatelessWidget {
@@ -17,13 +21,6 @@ class VehicleCreation extends StatelessWidget {
       'Material 2',
       'Material 3',
       'Material 4',
-    ];
-
-    List<String> unitList = [
-      'Unit 1',
-      'Unit 2',
-      'Unit 3',
-      'Unit 4',
     ];
 
     return Scaffold(
@@ -74,41 +71,41 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextFormField(
-                    keyboardType: TextInputType.text,
-                    hintText: 'Enter Vehicle name',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 1,
-                    borderRadius: 15,
-                  ),
+                  // CustomTextFormField(
+                  //   keyboardType: TextInputType.text,
+                  //   hintText: 'Enter Vehicle name',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 1,
+                  //   borderRadius: 15,
+                  // ),
                   SizedBox(height: 20.h),
                   _FieldName(
                     name: 'Capacity',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true, signed: true),
-                    hintText: 'Enter Vehicle capacity',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 1,
-                    borderRadius: 15,
-                  ),
+                  // CustomTextFormField(
+                  //   keyboardType: const TextInputType.numberWithOptions(
+                  //       decimal: true, signed: true),
+                  //   hintText: 'Enter Vehicle capacity',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 1,
+                  //   borderRadius: 15,
+                  // ),
                   SizedBox(height: 20.h),
                   _FieldName(
                     name: 'Driver Name',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextFormField(
-                    keyboardType: TextInputType.text,
-                    hintText: 'Enter Driver name',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 1,
-                    borderRadius: 15,
-                  ),
+                  // CustomTextFormField(
+                  //   keyboardType: TextInputType.text,
+                  //   hintText: 'Enter Driver name',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 1,
+                  //   borderRadius: 15,
+                  // ),
                   SizedBox(height: 20.h),
                   const _FieldName(name: 'Vehicle Type'),
                   CustomDropdownButton(
@@ -120,14 +117,14 @@ class VehicleCreation extends StatelessWidget {
                     name: 'Description',
                     padding: EdgeInsets.only(bottom: 8.h),
                   ),
-                  CustomTextFormField(
-                    keyboardType: TextInputType.text,
-                    hintText: 'Enter description here',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
-                    maxLines: 4,
-                    borderRadius: 15,
-                  ),
+                  // CustomTextFormField(
+                  //   keyboardType: TextInputType.text,
+                  //   hintText: 'Enter description here',
+                  //   contentPadding:
+                  //       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+                  //   maxLines: 4,
+                  //   borderRadius: 15,
+                  // ),
                   SizedBox(height: 20.h),
                 ],
               ),
@@ -143,7 +140,6 @@ class _FieldName extends StatelessWidget {
   const _FieldName({
     required this.name,
     this.padding,
-    super.key,
   });
 
   final String name;

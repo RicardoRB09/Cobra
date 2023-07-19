@@ -1,10 +1,14 @@
+// Package imports:
 import 'package:go_router/go_router.dart';
 
+// Project imports:
 import 'package:cobra/presentation/views/views.dart';
 import '../../presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/home/0',
+  // initialLocation: '/home/0',
+  // initialLocation: '/login-screen',
+  initialLocation: '/splash-screen',
   routes: [
     GoRoute(
       path: '/home/:page',
@@ -17,6 +21,11 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: '/driver-creation',
+      name: DriverCreationView.name,
+      builder: (_, __) => const DriverCreationView(),
+    ),
+    GoRoute(
       path: '/vehicle-creation',
       name: VehicleCreation.name,
       builder: (_, __) => const VehicleCreation(),
@@ -27,15 +36,20 @@ final appRouter = GoRouter(
       builder: (_, __) => const MaterialCreation(),
     ),
     GoRoute(
+      path: '/login-screen',
+      name: LoginScreen.name,
+      builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
       path: '/register-screen',
       name: RegisterScreen.name,
       builder: (_, __) => const RegisterScreen(),
     ),
     GoRoute(
-      path: 'login-screen',
-      name: LoginScreen.name,
-      builder: (context, state) => const LoginScreen(),
-    )
+      path: '/splash-screen',
+      name: SplashScreen.name,
+      builder: (_, __) => const SplashScreen(),
+    ),
 
     // ShellRoute(
     //   builder: (context, state, child) {

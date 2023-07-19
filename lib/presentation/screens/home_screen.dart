@@ -1,6 +1,7 @@
-import 'package:cobra/presentation/screens/user/login_screen.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../views/views.dart';
 import '../widgets/widgets.dart';
 
@@ -9,10 +10,12 @@ class HomeScreen extends StatelessWidget {
   final int pageIndex;
 
   final viewRoutes = const [
+    DriverListView(),
     VehicleListView(),
     LocationListView(),
     MaterialListView(),
-    LoginScreen(),
+    MoreView(),
+    // TransactionView(),
   ];
 
   const HomeScreen({
